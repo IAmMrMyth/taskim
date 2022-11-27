@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+<header class="py-5 bg-image-full"
+    style="background-image: url('{% static 'picture/header.jpg' %}'); background-position: center center;background-size: cover;">
+    <div class="text-left m-5">
+        <h1 class="text-white fs-3 fw-bolder"><span class="text-danger">T</span>askim</h1>
+        <p class="text-secondary mb-0">A website for planning your <span class="text-success">tasks</span>.</p>
+    </div>
+</header>
+<!-- Content section-->
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <h2>What is Taskim?</h2>
+                <p class="lead">Taskim is a website for manage your tasks.</p>
+                <p class="mb-0">This project is still under development, so stay tuned...</p>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="py-5 bg-image-full" style="background-image: url('{% static 'picture/splash.jpg' %}');background-position: center center;background-size: cover;">
+    <div style="height: 20rem"></div>
+</div>
+<!-- Content section-->
+<section class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <h2>How To Use?</h2>
+                <p class="lead">For using taskim you must login your profile</p>
+                <p class="mb-0">If you dont have profile in Taskim. Don't worry because Taskim is free so you can register easly.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

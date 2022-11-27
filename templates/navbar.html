@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand mb-2 mb-lg-0" href="/"><span class="text-success">task</span><span
+            class="text-danger">im</span><i class="fa-solid fa-tasks fa-xs p-1"></i></a>
+            <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
+                aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link {% if home %}active{% endif %}" aria-current="page" href="/"><i class="{% if home %}text-success{% endif %} fa fa-home"></i> Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link {% if tasks %}active{% endif %} dropdown-toggle" href="#" id="navbarTask" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="{% if tasks %}text-success{% endif %} fa fa-tasks"></i> Tasks
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarTask">
+                      <li><a class="dropdown-item" href="{% url 'todo_app:tasks' %}"><i class="fa fa-check-square"></i> All Tasks</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{% url 'todo_app:tasks_archived' %}"><i class="fa fa-archive"></i> Archived</a></li>
+                    </ul>
+                  </li>
+                
+                {% if not request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link {% if login %}active{% endif %}" href="{% url 'accounts:login' %}"><i class="{% if login %}text-success{% endif %} fa fa-user"></i> Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if reg %}active{% endif %}" href="{% url 'accounts:register' %}"><i class="{% if reg %}text-success{% endif %} fa fa-user-plus"></i> Register</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:logout' %}"><i class="fa fa-sign"></i> Logout</a>
+                </li>
+
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+{% if messages %}
+<div class="container mt-2">
+    {% for message in messages %}
+    <div {% if message.tags %} class="m1- alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}

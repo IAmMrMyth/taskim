@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="text-end m-2">
+
+        <a href="{% url 'todo_app:task_create' %}">
+            <button class="btn btn-dark text-end">
+                <span class="badge bg-dark border border-light  text-success"><i class="fa fa-plus"></i></span> Add Task
+            </button>
+        </a>
+    </div>
+
+    <div class="row">
+        {% for item in tasks_list %}
+        <div class="col-lg-3 col-sm-6 col-md-4 mt-2">
+            <div class="card text-bg-dark mt-2 p-2 h-100" style="max-width: 18rem;">
+                <div class="card-header">{{item.title}} <i
+                        class="fa-solid fa-xs {% if item.is_done %}text-success fa-check {% else %} fa-x text-danger {% endif %}"></i>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{item.title}}</h5>
+                    <p class="card-text">{{item.description|slice:50}}</p>
+
+                    <a href="{% url 'todo_app:task_detail' item.pk %}" class="btn mt-auto btn-dark btn-outline-light">
+                        show <i class="fa-solid fa-book-open-reader"></i>
+                    </a>
+                    <a href="{% url 'todo_app:task_delete' item.pk %}" class="btn mt-auto btn-dark btn-outline-danger">
+                        delete <i class="fa-solid fa-trash"></i>
+                    </a>
+
+                </div>
+                <div class="card-footer text-mute">
+                    created at: {{item.created_date}}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

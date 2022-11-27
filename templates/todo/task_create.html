@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <form class="form m-1" method="POST">
+        {% csrf_token %}
+        {{form}}
+        
+        <div class="form-group m-1 mt-3">
+            <button class="form-control btn btn-dark" type="submit">
+                {% if create %}
+                Create <i class="fa fa-plus	fa-sm text-success"></i>
+                {% else %}
+                update <i class="fa fa-edit	fa-sm text-success"></i>
+
+                {% endif %}
+            </button>
+        </div>
+    </form>
+
+</div>
+{% endblock content %}
